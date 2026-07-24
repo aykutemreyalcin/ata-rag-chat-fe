@@ -1,0 +1,24 @@
+.status {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.status--pending {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.status--up {
+  background: #ecfdf5;
+  border-color: #99f6e4;
+  color: #047857;
+}
+
+.status--down {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}

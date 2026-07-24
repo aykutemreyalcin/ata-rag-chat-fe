@@ -1,0 +1,65 @@
+Summary,Issue Type,Description,Priority,Labels,Story Points
+"[FE-1] Chat experience — SSE + citations","Story","Branch: fe/chat-experience
+Repo: ata_rag_fe
+Depends on: main FE scaffold + be/rag-chat-api contract (can mock until BE ready)
+
+Scope:
+- Responsive chat UI: input, message list, streaming tokens
+- SSE consumer for POST /api/chat
+- Confidence badge + unknown/low-confidence UI
+- Clickable source citations (title + URL)
+- PL/EN toggle (simple)
+- Suggested questions
+- MVP single-turn (multi-turn memory later)
+
+Acceptance:
+- Streams tokens with buffering-off nginx proxy
+- Citations render and open in new tab
+- Disabled scaffold replaced with working chat
+
+Verify: npm run test; npm run build; manual SSE against BE","Highest","repo:ata_rag_fe mvp chat fe/chat-experience","8"
+"[FE-1.1] Chat layout + message components","Sub-task","Parent story: [FE-1] Chat experience
+Message bubbles, input, suggested questions, loading states.","High","repo:ata_rag_fe chat","3"
+"[FE-1.2] SSE client + citations UI","Sub-task","Parent story: [FE-1] Chat experience
+sseClient, sources list, confidence badge, error/unknown states.","Highest","repo:ata_rag_fe chat","5"
+"[FE-2] Admin dashboard","Story","Branch: fe/admin-dashboard
+Repo: ata_rag_fe
+Depends on: main FE scaffold + be/admin-observability
+
+Scope:
+- Admin route cards/tables: pages, chunks, last crawl, failed pages
+- Top questions / unanswered list
+- Pricing ingest status
+- Trigger website sync + prices sync (with basic auth header/env)
+- Empty/error/loading states
+
+Acceptance:
+- Live data from /api/admin/*
+- Sync buttons call BE and refresh summary
+
+Verify: npm run test; npm run build","High","repo:ata_rag_fe mvp dashboard fe/admin-dashboard","5"
+"[FE-2.1] Summary cards + failed pages table","Sub-task","Parent story: [FE-2] Admin dashboard
+Wire TanStack Query to admin summary and failed-pages.","High","repo:ata_rag_fe dashboard","3"
+"[FE-2.2] Questions list + sync actions","Sub-task","Parent story: [FE-2] Admin dashboard
+Top/unanswered questions; sync + prices/sync buttons with auth.","Medium","repo:ata_rag_fe dashboard","2"
+"[FE-3] Quality + observability hardening","Story","Branch: fe/quality-observability
+Repo: ata_rag_fe
+Depends on: fe/chat-experience + fe/admin-dashboard
+
+Scope:
+- Client error boundary + latency/status UX polish
+- Accessibility pass (keyboard, labels, contrast)
+- Expand unit/integration tests; optional E2E smoke
+- Coolify SSE proxy verification (nginx buffering off / Traefik notes)
+- Feedback 👍👎 is optional/later
+
+Acceptance:
+- CI green: format, lint, test, build
+- /healthz documented and verified
+- Known a11y issues fixed for chat/admin
+
+Verify: npm run format:check && npm run lint && npm run test && npm run build","Medium","repo:ata_rag_fe mvp observability fe/quality-observability","5"
+"[FE-3.1] Tests + a11y polish","Sub-task","Parent story: [FE-3] Quality + observability
+Component tests for chat/admin; keyboard and aria improvements.","Medium","repo:ata_rag_fe quality","3"
+"[FE-3.2] Coolify SSE proxy verification","Sub-task","Parent story: [FE-3] Quality + observability
+Document/verify Traefik+nginx buffering off for /api/chat streaming.","Medium","repo:ata_rag_fe coolify","2"
