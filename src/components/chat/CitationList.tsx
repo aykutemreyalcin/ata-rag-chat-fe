@@ -26,6 +26,9 @@ export function CitationList({ sources, locale }: CitationListProps) {
             {source.section && (
               <span className="citations__section">{source.section}</span>
             )}
+            {source.sourceType && (
+              <span className="citations__type">{source.sourceType}</span>
+            )}
           </li>
         ))}
       </ul>

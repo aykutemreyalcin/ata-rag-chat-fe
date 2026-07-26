@@ -127,3 +127,47 @@ describe('sseClient parsers', () => {
     })
   })
 })
+
+describe('streamChat', () => {
+  it('does not call onDone after an in-stream error event', async () => {
+    const onDone = vi.fn()
+    const onError = vi.fn()
+    const encoder = new TextEncoder()
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(
+          encoder.encode(
+            'event: error\ndata: {"message":"The chat request could not be completed.","code":"CHAT_FAILED"}\n\n',
+          ),
+        )
+        controller.close()
+      },
+    })
+
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({
+        ok: true,
+        body,
+      }),
+    )
+
+    const { streamChat } = await import('../api/sseClient')
+    await streamChat(
+      { question: 'test' },
+      {
+        onToken: vi.fn(),
+        onSources: vi.fn(),
+        onDone,
+        onError,
+      },
+    )
+
+    expect(onError).toHaveBeenCalledWith(
+      'The chat request could not be completed.',
+    )
+    expect(onDone).not.toHaveBeenCalled()
+
+    vi.unstubAllGlobals()
+  })
+})
