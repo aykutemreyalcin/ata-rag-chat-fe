@@ -16,10 +16,4 @@ export async function fetchHealth(): Promise<HealthResponse> {
   return data
 }
 
-/**
- * SSE chat client placeholder — implemented in branch fe/chat-experience.
- */
-export async function postChatNotImplemented(question: string): Promise<never> {
-  await apiClient.post('/chat', { question, top_k: 5 })
-  throw new Error('Unexpected success from unimplemented chat endpoint')
-}
+export { streamChat } from './sseClient'

@@ -3,11 +3,59 @@ export type HealthResponse = {
   service: string
 }
 
+/** Matches be/rag-chat-api SourceCitation (camelCase JSON). */
+export type ChatSourceType = 'html' | 'pdf' | 'pricing'
+
 export type ChatSource = {
   title: string
   url: string
-  section?: string
+  section?: string | null
+  sourceType?: ChatSourceType
+  score?: number
 }
+
+/** Matches POST /api/chat request body (ChatRequest.java). */
+export type ChatLocale = 'en' | 'pl'
+
+export type ChatRequest = {
+  question: string
+  top_k?: number
+}
+
+/** Matches SSE `done` event payload (ChatDoneEvent.java). */
+export type ChatDoneEvent = {
+  confidence: number
+  answered: boolean
+  source_count: number
+  latency_ms: number
+  model: string
+}
+
+export type ConfidenceLevel = 'high' | 'medium' | 'low' | 'unknown'
+
+export type ChatConfidence = {
+  score: number | null
+  level: ConfidenceLevel
+  answered?: boolean
+}
+
+export type ChatMessageRole = 'user' | 'assistant'
+
+export type ChatMessageStatus = 'streaming' | 'complete' | 'error'
+
+export type ChatMessage = {
+  id: string
+  role: ChatMessageRole
+  content: string
+  sources?: ChatSource[]
+  confidence?: ChatConfidence
+  status?: ChatMessageStatus
+  error?: string
+  model?: string
+  latencyMs?: number
+}
+
+export type ChatStreamEventType = 'token' | 'sources' | 'error' | 'done'
 
 /** Matches backend crawl run serialization in AdminController. */
 export type CrawlRun = {
