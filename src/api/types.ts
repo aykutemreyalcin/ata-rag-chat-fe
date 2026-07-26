@@ -3,10 +3,44 @@ export type HealthResponse = {
   service: string
 }
 
+/** Matches be/rag-chat-api SourceCitation (camelCase JSON). */
+export type ChatSourceType = 'html' | 'pdf' | 'pricing'
+
 export type ChatSource = {
   title: string
   url: string
-  section?: string
+  section?: string | null
+  sourceType?: ChatSourceType
+  score?: number
+}
+
+/** Matches POST /api/chat request body (ChatRequest.java). */
+export type ChatRequest = {
+  question: string
+  top_k?: number
+}
+
+/** Matches SSE `done` event payload (ChatDoneEvent.java). Wired in FE-1.2. */
+export type ChatDoneEvent = {
+  confidence: number
+  answered: boolean
+  source_count: number
+  latency_ms: number
+  model: string
+}
+
+export type ChatLocale = 'en' | 'pl'
+
+export type ChatMessageRole = 'user' | 'assistant'
+
+export type ChatMessageStatus = 'streaming' | 'complete' | 'error'
+
+export type ChatMessage = {
+  id: string
+  role: ChatMessageRole
+  content: string
+  status: ChatMessageStatus
+  error?: string
 }
 
 export type AdminSummary = {
