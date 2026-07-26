@@ -276,9 +276,10 @@ export async function streamChat(
   const reader = response.body.getReader()
   const decoder = new TextDecoder()
   let doneCalled = false
+  let errored = false
 
   const finish = (result?: ChatDoneEvent) => {
-    if (doneCalled) return
+    if (doneCalled || errored) return
     doneCalled = true
     handlers.onDone(
       result ?? {
@@ -292,8 +293,13 @@ export async function streamChat(
   }
 
   const activeParser = createSseParser({
-    ...handlers,
+    onToken: handlers.onToken,
+    onSources: handlers.onSources,
     onDone: (result) => finish(result),
+    onError: (message) => {
+      errored = true
+      handlers.onError(message)
+    },
   })
 
   try {
@@ -308,6 +314,7 @@ export async function streamChat(
     if (signal?.aborted) {
       return
     }
+    errored = true
     handlers.onError(
       error instanceof Error ? error.message : 'Chat stream interrupted',
     )

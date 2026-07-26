@@ -242,6 +242,16 @@
   color: #64748b;
 }
 
+.citations__type {
+  display: inline-block;
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #0f766e;
+}
+
 .chat-input {
   display: grid;
   gap: 0.6rem;
