@@ -1,52 +1,48 @@
+import { useState } from 'react'
+import type { ChatLocale } from '../api/types'
+import { ChatInput } from '../components/chat/ChatInput'
+import { LocaleToggle } from '../components/chat/LocaleToggle'
+import { MessageList } from '../components/chat/MessageList'
+import { SuggestedQuestions } from '../components/chat/SuggestedQuestions'
+import { useChat } from '../hooks/useChat'
+import { getChatCopy } from '../i18n/chatLocale'
 import './ChatPage.css'
 
-const SUGGESTED = [
-  'What is the tuition for Computer Science?',
-  'How do I apply?',
-  'What documents are required?',
-  'Where is the Dean’s Office?',
-]
-
 export function ChatPage() {
+  const [locale, setLocale] = useState<ChatLocale>('en')
+  const copy = getChatCopy(locale)
+  const { messages, isStreaming, submitQuestion, stopStreaming } = useChat()
+
   return (
     <section className="panel" aria-labelledby="chat-heading">
-      <h1 id="chat-heading">Chat</h1>
-      <p className="panel__lead">
-        Ask questions about admissions, programmes, and tuition. Answers will
-        cite akademiata.pl sources once the RAG API is ready.
-      </p>
-
-      <div className="notice" role="status">
-        <strong>Not implemented yet.</strong> Streaming chat, citations, and
-        confidence badges land in branch <code>fe/chat-experience</code>. The
-        backend endpoint currently returns HTTP 501.
+      <div className="panel__header">
+        <div>
+          <h1 id="chat-heading">{copy.heading}</h1>
+          <p className="panel__lead">{copy.lead}</p>
+        </div>
+        <LocaleToggle locale={locale} onChange={setLocale} />
       </div>
 
-      <div className="chat-placeholder">
-        <label htmlFor="question">Your question</label>
-        <textarea
-          id="question"
-          rows={3}
-          disabled
-          placeholder="What is the tuition for Computer Science?"
-        />
-        <button type="button" disabled>
-          Send
-        </button>
-      </div>
+      <MessageList messages={messages} locale={locale} />
 
-      <div>
-        <h2>Suggested questions</h2>
-        <ul className="suggestions">
-          {SUGGESTED.map((item) => (
-            <li key={item}>
-              <button type="button" disabled>
-                {item}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {isStreaming && (
+        <div className="chat-status" role="status">
+          {copy.streaming}
+        </div>
+      )}
+
+      <ChatInput
+        locale={locale}
+        isStreaming={isStreaming}
+        onSubmit={submitQuestion}
+        onStop={stopStreaming}
+      />
+
+      <SuggestedQuestions
+        locale={locale}
+        disabled={isStreaming}
+        onSelect={submitQuestion}
+      />
     </section>
   )
 }

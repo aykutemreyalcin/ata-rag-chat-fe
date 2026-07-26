@@ -3,11 +3,56 @@ export type HealthResponse = {
   service: string
 }
 
+export type ChatSourceType = 'html' | 'pdf' | 'pricing'
+
 export type ChatSource = {
   title: string
   url: string
-  section?: string
+  section?: string | null
+  sourceType?: ChatSourceType
+  score?: number
 }
+
+export type ChatLocale = 'en' | 'pl'
+
+export type ChatRequest = {
+  question: string
+  top_k?: number
+}
+
+export type ChatDoneEvent = {
+  confidence: number
+  answered: boolean
+  source_count: number
+  latency_ms: number
+  model: string
+}
+
+export type ConfidenceLevel = 'high' | 'medium' | 'low' | 'unknown'
+
+export type ChatConfidence = {
+  score: number | null
+  level: ConfidenceLevel
+  answered?: boolean
+}
+
+export type ChatMessageRole = 'user' | 'assistant'
+
+export type ChatMessageStatus = 'streaming' | 'complete' | 'error'
+
+export type ChatMessage = {
+  id: string
+  role: ChatMessageRole
+  content: string
+  sources?: ChatSource[]
+  confidence?: ChatConfidence
+  status?: ChatMessageStatus
+  error?: string
+  model?: string
+  latencyMs?: number
+}
+
+export type ChatStreamEventType = 'token' | 'sources' | 'error' | 'done'
 
 export type AdminSummary = {
   page_count: number
