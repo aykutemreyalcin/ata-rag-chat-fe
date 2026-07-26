@@ -16,11 +16,4 @@ export async function fetchHealth(): Promise<HealthResponse> {
   return data
 }
 
-/**
- * POST /api/chat SSE client — implemented in FE-1.2.
- * Request body matches be/rag-chat-api ChatRequest: { question, top_k? }.
- */
-export async function postChatNotImplemented(question: string): Promise<never> {
-  await apiClient.post('/chat', { question, top_k: 5 })
-  throw new Error('Unexpected success from unimplemented chat endpoint')
-}
+export { streamChat } from './sseClient'

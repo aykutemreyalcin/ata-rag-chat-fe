@@ -8,7 +8,11 @@ import App from '../App'
 vi.mock('../api/client', () => ({
   fetchHealth: vi.fn().mockRejectedValue(new Error('offline')),
   apiClient: {},
-  postChatNotImplemented: vi.fn(),
+}))
+
+vi.mock('../api/sseClient', () => ({
+  streamChat: vi.fn().mockResolvedValue(undefined),
+  confidenceFromDone: vi.fn(),
 }))
 
 function renderApp(path = '/') {
@@ -31,8 +35,19 @@ describe('App routes', () => {
     expect(
       screen.getByRole('textbox', { name: 'Your question' }),
     ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Send' })).toBeInTheDocument()
     expect(screen.getByText('Suggested questions')).toBeInTheDocument()
     expect(await screen.findByText(/Backend unavailable/i)).toBeInTheDocument()
+  })
+
+  it('switches locale labels', async () => {
+    const user = userEvent.setup()
+    renderApp('/')
+
+    await user.click(screen.getByRole('button', { name: 'PL' }))
+
+    expect(screen.getByRole('heading', { name: 'Czat' })).toBeInTheDocument()
+    expect(screen.getByText('Proponowane pytania')).toBeInTheDocument()
   })
 
   it('shows loading state after submitting a question', async () => {
@@ -46,9 +61,7 @@ describe('App routes', () => {
     await user.click(screen.getByRole('button', { name: 'Send' }))
 
     expect(screen.getByText('You')).toBeInTheDocument()
-    expect(
-      screen.getByText('Waiting for a response…'),
-    ).toBeInTheDocument()
+    expect(screen.getByText('Waiting for a response…')).toBeInTheDocument()
     expect(screen.getByRole('status')).toHaveTextContent(
       'Assistant is typing…',
     )

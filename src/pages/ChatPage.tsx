@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ChatLayout } from '../components/chat/ChatLayout'
-import { useChatSession } from '../hooks/useChatSession'
+import { useChat } from '../hooks/useChat'
 import { getChatCopy } from '../i18n/chatLocale'
 import type { ChatLocale } from '../api/types'
 import './ChatPage.css'
@@ -8,16 +8,7 @@ import './ChatPage.css'
 export function ChatPage() {
   const [locale, setLocale] = useState<ChatLocale>('en')
   const copy = getChatCopy(locale)
-  const {
-    messages,
-    isStreaming,
-    beginTurn,
-    stopStreaming,
-  } = useChatSession()
-
-  function submitQuestion(question: string) {
-    beginTurn(question)
-  }
+  const { messages, isStreaming, submitQuestion, stopStreaming } = useChat()
 
   return (
     <section className="panel" aria-labelledby="chat-heading">

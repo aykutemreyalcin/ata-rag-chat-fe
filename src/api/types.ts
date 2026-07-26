@@ -15,12 +15,14 @@ export type ChatSource = {
 }
 
 /** Matches POST /api/chat request body (ChatRequest.java). */
+export type ChatLocale = 'en' | 'pl'
+
 export type ChatRequest = {
   question: string
   top_k?: number
 }
 
-/** Matches SSE `done` event payload (ChatDoneEvent.java). Wired in FE-1.2. */
+/** Matches SSE `done` event payload (ChatDoneEvent.java). */
 export type ChatDoneEvent = {
   confidence: number
   answered: boolean
@@ -29,7 +31,13 @@ export type ChatDoneEvent = {
   model: string
 }
 
-export type ChatLocale = 'en' | 'pl'
+export type ConfidenceLevel = 'high' | 'medium' | 'low' | 'unknown'
+
+export type ChatConfidence = {
+  score: number | null
+  level: ConfidenceLevel
+  answered?: boolean
+}
 
 export type ChatMessageRole = 'user' | 'assistant'
 
@@ -39,9 +47,15 @@ export type ChatMessage = {
   id: string
   role: ChatMessageRole
   content: string
-  status: ChatMessageStatus
+  sources?: ChatSource[]
+  confidence?: ChatConfidence
+  status?: ChatMessageStatus
   error?: string
+  model?: string
+  latencyMs?: number
 }
+
+export type ChatStreamEventType = 'token' | 'sources' | 'error' | 'done'
 
 export type AdminSummary = {
   page_count: number

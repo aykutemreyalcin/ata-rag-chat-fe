@@ -8,6 +8,7 @@ type ChatInputProps = {
   isStreaming: boolean
   onSubmit: (question: string) => void
   onStop: () => void
+  initialValue?: string
 }
 
 export function ChatInput({
@@ -15,9 +16,10 @@ export function ChatInput({
   isStreaming,
   onSubmit,
   onStop,
+  initialValue = '',
 }: ChatInputProps) {
   const copy = getChatCopy(locale)
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(initialValue)
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
