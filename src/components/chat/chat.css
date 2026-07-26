@@ -262,6 +262,12 @@
   font-weight: 600;
 }
 
+.chat-input__hint {
+  margin: -0.25rem 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
 .chat-input textarea {
   width: 100%;
   resize: vertical;

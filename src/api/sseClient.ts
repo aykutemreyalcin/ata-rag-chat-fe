@@ -95,8 +95,7 @@ export function parseSourcesPayload(data: string): ChatSource[] {
         !!item && typeof item === 'object',
     )
     .filter(
-      (item) =>
-        typeof item.title === 'string' && typeof item.url === 'string',
+      (item) => typeof item.title === 'string' && typeof item.url === 'string',
     )
     .map((item) => ({
       title: item.title as string,
@@ -112,13 +111,11 @@ export function parseDonePayload(data: string): ChatDoneEvent {
   if (payload && typeof payload === 'object') {
     const record = payload as Record<string, unknown>
     return {
-      confidence:
-        typeof record.confidence === 'number' ? record.confidence : 0,
+      confidence: typeof record.confidence === 'number' ? record.confidence : 0,
       answered: record.answered === true,
       source_count:
         typeof record.source_count === 'number' ? record.source_count : 0,
-      latency_ms:
-        typeof record.latency_ms === 'number' ? record.latency_ms : 0,
+      latency_ms: typeof record.latency_ms === 'number' ? record.latency_ms : 0,
       model: typeof record.model === 'string' ? record.model : 'unknown',
     }
   }

@@ -70,8 +70,7 @@ export async function triggerWebsiteSync(): Promise<SyncJobResponse> {
 }
 
 export async function triggerPricingSync(): Promise<SyncJobResponse> {
-  const { data } = await adminClient().post<SyncJobResponse>(
-    '/admin/prices/sync',
-  )
+  const { data } =
+    await adminClient().post<SyncJobResponse>('/admin/prices/sync')
   return data
 }

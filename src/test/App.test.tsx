@@ -62,9 +62,7 @@ describe('App routes', () => {
 
     expect(screen.getByText('You')).toBeInTheDocument()
     expect(screen.getByText('Waiting for a response…')).toBeInTheDocument()
-    expect(screen.getByRole('status')).toHaveTextContent(
-      'Assistant is typing…',
-    )
+    expect(screen.getByText('Assistant is typing…')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Stop' })).toBeInTheDocument()
   })
 
@@ -76,7 +74,9 @@ describe('App routes', () => {
     expect(
       screen.getByRole('button', { name: 'Sync website' }),
     ).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Sync prices' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Sync prices' }),
+    ).toBeInTheDocument()
     expect(screen.getByText(/VITE_ADMIN_USER/i)).toBeInTheDocument()
   })
 })

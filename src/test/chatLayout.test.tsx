@@ -35,9 +35,7 @@ describe('chat layout components', () => {
 
   it('shows loading status while streaming', () => {
     render(<ChatLoadingStatus locale="en" visible />)
-    expect(screen.getByRole('status')).toHaveTextContent(
-      'Assistant is typing…',
-    )
+    expect(screen.getByRole('status')).toHaveTextContent('Assistant is typing…')
   })
 
   it('disables send and shows stop while streaming', async () => {
@@ -45,12 +43,7 @@ describe('chat layout components', () => {
     const onStop = vi.fn()
 
     render(
-      <ChatInput
-        locale="en"
-        isStreaming
-        onSubmit={vi.fn()}
-        onStop={onStop}
-      />,
+      <ChatInput locale="en" isStreaming onSubmit={vi.fn()} onStop={onStop} />,
     )
 
     expect(screen.getByRole('button', { name: 'Stop' })).toBeInTheDocument()

@@ -30,7 +30,10 @@ export function QuestionsPanel({
 
   return (
     <div className="admin-grid">
-      <section className="admin-section" aria-labelledby="top-questions-heading">
+      <section
+        className="admin-section"
+        aria-labelledby="top-questions-heading"
+      >
         <h2 id="top-questions-heading">Top questions</h2>
         {questions.top_questions.length === 0 ? (
           <p className="admin-empty">No questions logged yet.</p>

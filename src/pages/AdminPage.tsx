@@ -41,9 +41,8 @@ export function AdminPage() {
 
       {!credentialsConfigured && (
         <div className="admin-notice admin-notice--info" role="status">
-          Set <code>VITE_ADMIN_USER</code> and{' '}
-          <code>VITE_ADMIN_PASSWORD</code> in your <code>.env</code> to load
-          admin data and trigger sync jobs.
+          Set <code>VITE_ADMIN_USER</code> and <code>VITE_ADMIN_PASSWORD</code>{' '}
+          in your <code>.env</code> to load admin data and trigger sync jobs.
         </div>
       )}
 

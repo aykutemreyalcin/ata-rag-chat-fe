@@ -13,7 +13,7 @@ export function MessageList({ messages, locale }: MessageListProps) {
   }
 
   return (
-    <div className="message-list" aria-live="polite">
+    <div className="message-list" aria-live="polite" aria-label="Chat messages">
       {messages.map((message) => (
         <MessageBubble key={message.id} message={message} locale={locale} />
       ))}

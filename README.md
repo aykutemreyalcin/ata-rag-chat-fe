@@ -38,6 +38,17 @@ Runtime: `BACKEND_UPSTREAM`, `BACKEND_HOST`
 
 Details: [docs/COOLIFY_DEPLOY.md](./docs/COOLIFY_DEPLOY.md)
 
+Health checks:
+
+- **`/healthz`** — frontend container liveness (nginx, used by Coolify)
+- **`/health`** — proxied backend API health
+
+## Quality gate (CI)
+
+```bash
+npm run format:check && npm run lint && npm run test && npm run build
+```
+
 ## Scripts
 
 | Command                | Description                   |

@@ -21,7 +21,12 @@ export function SuggestedQuestions({
       <ul className="suggestions">
         {copy.suggestions.map((item) => (
           <li key={item}>
-            <button type="button" disabled={disabled} onClick={() => onSelect(item)}>
+            <button
+              type="button"
+              disabled={disabled}
+              aria-label={`Ask: ${item}`}
+              onClick={() => onSelect(item)}
+            >
               {item}
             </button>
           </li>

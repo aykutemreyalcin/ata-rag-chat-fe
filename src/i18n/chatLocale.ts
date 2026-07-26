@@ -5,6 +5,7 @@ type ChatCopy = {
   lead: string
   questionLabel: string
   questionPlaceholder: string
+  questionHint: string
   send: string
   sending: string
   stop: string
@@ -30,6 +31,7 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
     lead: 'Ask questions about admissions, programmes, and tuition. Answers cite akademiata.pl sources.',
     questionLabel: 'Your question',
     questionPlaceholder: 'What is the tuition for Computer Science?',
+    questionHint: 'Press Ctrl+Enter to send.',
     send: 'Send',
     sending: 'Sending…',
     stop: 'Stop',
@@ -65,6 +67,7 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
     lead: 'Zadawaj pytania o rekrutację, kierunki i czesne. Odpowiedzi zawierają źródła z akademiata.pl.',
     questionLabel: 'Twoje pytanie',
     questionPlaceholder: 'Ile wynosi czesne na Informatyce?',
+    questionHint: 'Naciśnij Ctrl+Enter, aby wysłać.',
     send: 'Wyślij',
     sending: 'Wysyłanie…',
     stop: 'Zatrzymaj',
