@@ -8,7 +8,11 @@ import App from '../App'
 vi.mock('../api/client', () => ({
   fetchHealth: vi.fn().mockRejectedValue(new Error('offline')),
   apiClient: {},
-  streamChat: vi.fn(),
+}))
+
+vi.mock('../api/sseClient', () => ({
+  streamChat: vi.fn().mockResolvedValue(undefined),
+  confidenceFromDone: vi.fn(),
 }))
 
 function renderApp(path = '/') {
@@ -25,7 +29,7 @@ function renderApp(path = '/') {
 }
 
 describe('App routes', () => {
-  it('renders chat experience', async () => {
+  it('renders chat layout', async () => {
     renderApp('/')
     expect(screen.getByRole('heading', { name: 'Chat' })).toBeInTheDocument()
     expect(
@@ -44,6 +48,24 @@ describe('App routes', () => {
 
     expect(screen.getByRole('heading', { name: 'Czat' })).toBeInTheDocument()
     expect(screen.getByText('Proponowane pytania')).toBeInTheDocument()
+  })
+
+  it('shows loading state after submitting a question', async () => {
+    const user = userEvent.setup()
+    renderApp('/')
+
+    await user.type(
+      screen.getByRole('textbox', { name: 'Your question' }),
+      'How do I apply?',
+    )
+    await user.click(screen.getByRole('button', { name: 'Send' }))
+
+    expect(screen.getByText('You')).toBeInTheDocument()
+    expect(screen.getByText('Waiting for a response…')).toBeInTheDocument()
+    expect(screen.getByRole('status')).toHaveTextContent(
+      'Assistant is typing…',
+    )
+    expect(screen.getByRole('button', { name: 'Stop' })).toBeInTheDocument()
   })
 
   it('renders admin scaffold', () => {

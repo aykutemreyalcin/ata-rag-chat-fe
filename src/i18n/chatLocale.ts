@@ -18,6 +18,8 @@ type ChatCopy = {
   errorPrefix: string
   emptyAssistant: string
   localeLabel: string
+  roleUser: string
+  roleAssistant: string
   confidenceLabels: Record<'high' | 'medium' | 'low' | 'unknown', string>
   suggestions: string[]
 }
@@ -43,6 +45,8 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
     errorPrefix: 'Something went wrong',
     emptyAssistant: 'Waiting for a response…',
     localeLabel: 'Language',
+    roleUser: 'You',
+    roleAssistant: 'Assistant',
     confidenceLabels: {
       high: 'High confidence',
       medium: 'Medium confidence',
@@ -53,7 +57,7 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
       'What is the tuition for Computer Science?',
       'How do I apply?',
       'What documents are required?',
-      'Where is the Dean’s Office?',
+      "Where is the Dean's Office?",
     ],
   },
   pl: {
@@ -76,6 +80,8 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
     errorPrefix: 'Coś poszło nie tak',
     emptyAssistant: 'Oczekiwanie na odpowiedź…',
     localeLabel: 'Język',
+    roleUser: 'Ty',
+    roleAssistant: 'Asystent',
     confidenceLabels: {
       high: 'Wysoka pewność',
       medium: 'Średnia pewność',

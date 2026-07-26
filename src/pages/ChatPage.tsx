@@ -1,11 +1,8 @@
 import { useState } from 'react'
-import type { ChatLocale } from '../api/types'
-import { ChatInput } from '../components/chat/ChatInput'
-import { LocaleToggle } from '../components/chat/LocaleToggle'
-import { MessageList } from '../components/chat/MessageList'
-import { SuggestedQuestions } from '../components/chat/SuggestedQuestions'
+import { ChatLayout } from '../components/chat/ChatLayout'
 import { useChat } from '../hooks/useChat'
 import { getChatCopy } from '../i18n/chatLocale'
+import type { ChatLocale } from '../api/types'
 import './ChatPage.css'
 
 export function ChatPage() {
@@ -15,33 +12,15 @@ export function ChatPage() {
 
   return (
     <section className="panel" aria-labelledby="chat-heading">
-      <div className="panel__header">
-        <div>
-          <h1 id="chat-heading">{copy.heading}</h1>
-          <p className="panel__lead">{copy.lead}</p>
-        </div>
-        <LocaleToggle locale={locale} onChange={setLocale} />
-      </div>
-
-      <MessageList messages={messages} locale={locale} />
-
-      {isStreaming && (
-        <div className="chat-status" role="status">
-          {copy.streaming}
-        </div>
-      )}
-
-      <ChatInput
+      <ChatLayout
         locale={locale}
+        onLocaleChange={setLocale}
+        heading={copy.heading}
+        lead={copy.lead}
+        messages={messages}
         isStreaming={isStreaming}
         onSubmit={submitQuestion}
         onStop={stopStreaming}
-      />
-
-      <SuggestedQuestions
-        locale={locale}
-        disabled={isStreaming}
-        onSelect={submitQuestion}
       />
     </section>
   )

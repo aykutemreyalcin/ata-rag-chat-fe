@@ -3,6 +3,7 @@ export type HealthResponse = {
   service: string
 }
 
+/** Matches be/rag-chat-api SourceCitation (camelCase JSON). */
 export type ChatSourceType = 'html' | 'pdf' | 'pricing'
 
 export type ChatSource = {
@@ -13,6 +14,7 @@ export type ChatSource = {
   score?: number
 }
 
+/** Matches POST /api/chat request body (ChatRequest.java). */
 export type ChatLocale = 'en' | 'pl'
 
 export type ChatRequest = {
@@ -20,6 +22,7 @@ export type ChatRequest = {
   top_k?: number
 }
 
+/** Matches SSE `done` event payload (ChatDoneEvent.java). */
 export type ChatDoneEvent = {
   confidence: number
   answered: boolean

@@ -57,7 +57,9 @@ export function MessageBubble({ message, locale }: MessageBubbleProps) {
       aria-live={isStreaming ? 'polite' : undefined}
     >
       <header className="message__meta">
-        <span className="message__role">{isUser ? 'You' : 'Assistant'}</span>
+        <span className="message__role">
+          {isUser ? copy.roleUser : copy.roleAssistant}
+        </span>
         {!isUser && message.confidence && (
           <ConfidenceBadge confidence={message.confidence} locale={locale} />
         )}
