@@ -16,11 +16,12 @@ export function SyncActions({
   disabled = false,
 }: SyncActionsProps) {
   return (
-    <div className="admin-actions">
+    <div className="admin-actions" role="group" aria-label="Sync actions">
       <button
         type="button"
         onClick={onWebsiteSync}
         disabled={disabled || isWebsitePending || isPricingPending}
+        aria-busy={isWebsitePending}
       >
         {isWebsitePending ? 'Starting website sync…' : 'Sync website'}
       </button>
@@ -29,6 +30,7 @@ export function SyncActions({
         className="secondary"
         onClick={onPricingSync}
         disabled={disabled || isWebsitePending || isPricingPending}
+        aria-busy={isPricingPending}
       >
         {isPricingPending ? 'Starting pricing sync…' : 'Sync prices'}
       </button>

@@ -37,15 +37,18 @@ export function useChatSession() {
     [isStreaming],
   )
 
-  const appendAssistantToken = useCallback((assistantId: string, token: string) => {
-    setMessages((current) =>
-      current.map((message) =>
-        message.id === assistantId
-          ? { ...message, content: message.content + token }
-          : message,
-      ),
-    )
-  }, [])
+  const appendAssistantToken = useCallback(
+    (assistantId: string, token: string) => {
+      setMessages((current) =>
+        current.map((message) =>
+          message.id === assistantId
+            ? { ...message, content: message.content + token }
+            : message,
+        ),
+      )
+    },
+    [],
+  )
 
   const completeAssistant = useCallback((assistantId: string) => {
     setMessages((current) =>

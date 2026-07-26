@@ -31,6 +31,9 @@ export function FailedPagesTable({
   return (
     <div className="admin-table-wrap">
       <table className="admin-table">
+        <caption className="admin-table__caption">
+          Pages that failed during the latest crawl
+        </caption>
         <thead>
           <tr>
             <th scope="col">URL</th>

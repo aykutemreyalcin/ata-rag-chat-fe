@@ -1,0 +1,53 @@
+.error-boundary {
+  max-width: 36rem;
+  margin: 4rem auto;
+  padding: 1.5rem;
+  border-radius: 0.85rem;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.error-boundary h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+}
+
+.error-boundary p {
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+}
+
+.error-boundary__detail {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  word-break: break-word;
+}
+
+.error-boundary__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.error-boundary__actions button,
+.error-boundary__actions a {
+  padding: 0.55rem 1rem;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.error-boundary__actions button {
+  border: none;
+  background: #991b1b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.error-boundary__actions a {
+  border: 1px solid #fca5a5;
+  background: #fff;
+  color: #991b1b;
+}

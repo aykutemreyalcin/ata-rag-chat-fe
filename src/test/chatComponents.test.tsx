@@ -62,7 +62,8 @@ describe('chat components', () => {
         message={{
           id: '1',
           role: 'assistant',
-          content: "I couldn't find this information on the AkademiaTA website.",
+          content:
+            "I couldn't find this information on the AkademiaTA website.",
           status: 'complete',
           confidence: { score: 0.35, level: 'unknown', answered: false },
         }}

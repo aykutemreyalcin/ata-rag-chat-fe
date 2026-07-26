@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type FormEvent, type KeyboardEvent } from 'react'
 import type { ChatLocale } from '../../api/types'
 import { getChatCopy } from '../../i18n/chatLocale'
 import './chat.css'
@@ -29,17 +29,36 @@ export function ChatInput({
     setValue('')
   }
 
+  function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault()
+      const trimmed = value.trim()
+      if (!trimmed || isStreaming) return
+      onSubmit(trimmed)
+      setValue('')
+    }
+  }
+
   return (
-    <form className="chat-input" onSubmit={handleSubmit}>
+    <form
+      className="chat-input"
+      onSubmit={handleSubmit}
+      aria-busy={isStreaming}
+    >
       <label htmlFor="question">{copy.questionLabel}</label>
       <textarea
         id="question"
         rows={3}
         value={value}
         onChange={(event) => setValue(event.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder={copy.questionPlaceholder}
         disabled={isStreaming}
+        aria-describedby="question-hint"
       />
+      <p id="question-hint" className="chat-input__hint">
+        {copy.questionHint}
+      </p>
       <div className="chat-input__actions">
         {isStreaming ? (
           <button type="button" className="secondary" onClick={onStop}>

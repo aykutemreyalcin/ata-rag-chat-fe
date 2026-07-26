@@ -44,7 +44,9 @@ describe('backend chat contract alignment', () => {
   })
 
   it('documents chat SSE sequence from backend service', () => {
-    const source = readBackend('src/main/java/com/ata/rag/chat/ChatService.java')
+    const source = readBackend(
+      'src/main/java/com/ata/rag/chat/ChatService.java',
+    )
 
     expect(source).toContain('send(emitter, "sources"')
     expect(source).toContain('send(emitter, "token"')
@@ -60,5 +62,15 @@ describe('backend chat contract alignment', () => {
     expect(source).toContain('@GetMapping("/health")')
     expect(source).toContain('"ok"')
     expect(source).toContain('"ata-rag-chat-be"')
+  })
+
+  it('documents admin routes require basic auth', () => {
+    const source = readBackend(
+      'src/main/java/com/ata/rag/config/SecurityConfig.java',
+    )
+
+    expect(source).toContain('"/api/admin/**"')
+    expect(source).toContain('hasRole("ADMIN")')
+    expect(source).toContain('"/api/chat"')
   })
 })

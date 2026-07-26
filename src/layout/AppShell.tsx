@@ -5,6 +5,9 @@ import './AppShell.css'
 export function AppShell() {
   return (
     <div className="shell">
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <header className="shell__header">
         <div className="shell__brand">
           <span className="shell__logo" aria-hidden>
@@ -34,7 +37,7 @@ export function AppShell() {
         </nav>
         <BackendStatus />
       </header>
-      <main className="shell__main">
+      <main id="main-content" className="shell__main" tabIndex={-1}>
         <Outlet />
       </main>
     </div>

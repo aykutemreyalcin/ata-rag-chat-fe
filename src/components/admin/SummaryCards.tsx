@@ -67,7 +67,9 @@ export function SummaryCards({ summary, isLoading }: SummaryCardsProps) {
         <p className="admin-card__value">
           {summary.last_crawl?.pages_updated ?? '—'}
         </p>
-        <p className="admin-card__meta">{formatRunStatus(summary.last_crawl)}</p>
+        <p className="admin-card__meta">
+          {formatRunStatus(summary.last_crawl)}
+        </p>
       </article>
       <article className="admin-card">
         <h2>Failed pages</h2>

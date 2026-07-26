@@ -71,9 +71,7 @@ describe('sseClient parsers', () => {
   })
 
   it('parses error payloads', () => {
-    expect(parseErrorPayload('Service unavailable')).toBe(
-      'Service unavailable',
-    )
+    expect(parseErrorPayload('Service unavailable')).toBe('Service unavailable')
     expect(
       parseErrorPayload(
         '{"message":"The chat request could not be completed.","code":"CHAT_FAILED"}',

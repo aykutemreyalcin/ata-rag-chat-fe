@@ -21,10 +21,7 @@ function ConfidenceNotice({
 
   if (message.confidence?.answered === false || level === 'unknown') {
     return (
-      <div
-        className="confidence-notice confidence-notice--unknown"
-        role="note"
-      >
+      <div className="confidence-notice confidence-notice--unknown" role="note">
         <strong>{copy.unknownConfidenceTitle}</strong>
         <p>{copy.unknownConfidenceBody}</p>
       </div>
