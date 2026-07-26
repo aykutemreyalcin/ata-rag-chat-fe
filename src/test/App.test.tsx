@@ -68,10 +68,15 @@ describe('App routes', () => {
     expect(screen.getByRole('button', { name: 'Stop' })).toBeInTheDocument()
   })
 
-  it('renders admin scaffold', () => {
+  it('renders admin dashboard shell', () => {
     renderApp('/admin')
     expect(
       screen.getByRole('heading', { name: 'Admin dashboard' }),
     ).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Sync website' }),
+    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Sync prices' })).toBeInTheDocument()
+    expect(screen.getByText(/VITE_ADMIN_USER/i)).toBeInTheDocument()
   })
 })
