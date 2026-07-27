@@ -2,9 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
-const BACKEND_ROOT = resolve(
-  'C:/Users/alvin/Desktop/ATA Builders/Project 3/ata-rag-chat-be',
-)
+const BACKEND_ROOT = resolve(__dirname, '../../../ata_rag_be')
 
 function readBackend(relativePath: string): string {
   return readFileSync(resolve(BACKEND_ROOT, relativePath), 'utf8')
@@ -55,6 +53,17 @@ describe('backend admin contract alignment', () => {
     expect(source).toContain('HttpStatus.ACCEPTED')
   })
 
+  it('documents feedback analytics endpoint', () => {
+    const source = readBackend(
+      'src/main/java/com/ata/rag/controller/AdminController.java',
+    )
+
+    expect(source).toContain('@GetMapping("/feedback")')
+    expect(source).toContain('helpful_count')
+    expect(source).toContain('not_helpful_count')
+    expect(source).toContain('feedback_rate')
+  })
+
   it('requires basic auth for admin routes', () => {
     const source = readBackend(
       'src/main/java/com/ata/rag/config/SecurityConfig.java',
@@ -62,5 +71,6 @@ describe('backend admin contract alignment', () => {
 
     expect(source).toContain('"/api/admin/**"')
     expect(source).toContain('hasRole("ADMIN")')
+    expect(source).toContain('"/api/chat/feedback"')
   })
 })

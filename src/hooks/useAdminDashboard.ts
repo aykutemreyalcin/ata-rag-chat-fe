@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
+  fetchAdminFeedback,
   fetchAdminQuestions,
   fetchAdminSummary,
   fetchFailedPages,
@@ -11,6 +12,7 @@ import { hasAdminCredentials } from '../config/adminAuth'
 import { adminQueryKeys } from './adminQueryKeys'
 
 const QUESTIONS_LIMIT = 10
+const FEEDBACK_LIMIT = 20
 
 export function useAdminSummary() {
   return useQuery({
@@ -36,11 +38,22 @@ export function useAdminQuestions() {
   })
 }
 
+export function useAdminFeedback() {
+  return useQuery({
+    queryKey: adminQueryKeys.feedback(FEEDBACK_LIMIT),
+    queryFn: () => fetchAdminFeedback(FEEDBACK_LIMIT),
+    enabled: hasAdminCredentials(),
+  })
+}
+
 export function useAdminSyncActions() {
   const queryClient = useQueryClient()
 
   const invalidateSummary = async () => {
-    await queryClient.invalidateQueries({ queryKey: adminQueryKeys.summary })
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: adminQueryKeys.summary }),
+      queryClient.invalidateQueries({ queryKey: ['admin', 'feedback'] }),
+    ])
   }
 
   const websiteSync = useMutation({

@@ -1,12 +1,14 @@
 import { hasAdminCredentials } from '../config/adminAuth'
 import {
   getAdminErrorMessage,
+  useAdminFeedback,
   useAdminQuestions,
   useAdminSummary,
   useAdminSyncActions,
   useFailedPages,
 } from '../hooks/useAdminDashboard'
 import { FailedPagesTable } from '../components/admin/FailedPagesTable'
+import { FeedbackPanel } from '../components/admin/FeedbackPanel'
 import { QuestionsPanel } from '../components/admin/QuestionsPanel'
 import { SummaryCards } from '../components/admin/SummaryCards'
 import { SyncActions } from '../components/admin/SyncActions'
@@ -18,6 +20,7 @@ export function AdminPage() {
   const summaryQuery = useAdminSummary()
   const failedPagesQuery = useFailedPages()
   const questionsQuery = useAdminQuestions()
+  const feedbackQuery = useAdminFeedback()
   const { websiteSync, pricingSync, syncError, syncMessage } =
     useAdminSyncActions()
 
@@ -30,13 +33,16 @@ export function AdminPage() {
   const questionsError = questionsQuery.error
     ? getAdminErrorMessage(questionsQuery.error)
     : undefined
+  const feedbackError = feedbackQuery.error
+    ? getAdminErrorMessage(feedbackQuery.error)
+    : undefined
 
   return (
     <section className="panel" aria-labelledby="admin-heading">
       <h1 id="admin-heading">Admin dashboard</h1>
       <p className="admin-panel__lead">
-        Crawl status, failed pages, pricing ingest, and unanswered questions
-        from the RAG backend.
+        Crawl status, failed pages, pricing ingest, answer feedback, and
+        unanswered questions from the RAG backend.
       </p>
 
       {!credentialsConfigured && (
@@ -75,6 +81,12 @@ export function AdminPage() {
       <SummaryCards
         summary={summaryQuery.data}
         isLoading={credentialsConfigured && summaryQuery.isLoading}
+      />
+
+      <FeedbackPanel
+        feedback={feedbackQuery.data}
+        isLoading={credentialsConfigured && feedbackQuery.isLoading}
+        errorMessage={feedbackError}
       />
 
       <section className="admin-section" aria-labelledby="failed-pages-heading">

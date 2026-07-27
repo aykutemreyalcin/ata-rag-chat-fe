@@ -1,13 +1,13 @@
 .admin-panel__lead {
   margin: 0 0 1rem;
-  color: #475569;
+  color: var(--ata-text-muted);
   line-height: 1.5;
 }
 
 .admin-notice {
   margin-bottom: 1rem;
   padding: 0.9rem 1rem;
-  border-radius: 0.75rem;
+  border-radius: var(--ata-radius-md);
   line-height: 1.45;
 }
 
@@ -18,48 +18,55 @@
 }
 
 .admin-notice--error {
-  background: #fef2f2;
+  background: var(--ata-danger-soft);
   border: 1px solid #fecaca;
-  color: #991b1b;
+  color: var(--ata-danger);
 }
 
 .admin-notice--success {
-  background: #ecfdf5;
+  background: var(--ata-success-soft);
   border: 1px solid #99f6e4;
   color: #047857;
 }
 
 .admin-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.85rem;
   margin-bottom: 1.5rem;
+}
+
+.admin-cards--compact {
+  margin-bottom: 1rem;
 }
 
 .admin-card {
   background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.85rem;
+  border: 1px solid var(--ata-border);
+  border-radius: var(--ata-radius-md);
   padding: 1rem;
+  box-shadow: var(--ata-shadow-sm);
 }
 
-.admin-card h2 {
+.admin-card h2,
+.admin-card h3 {
   margin: 0;
   font-size: 0.85rem;
-  color: #64748b;
-  font-weight: 600;
+  color: var(--ata-text-muted);
+  font-weight: 700;
 }
 
 .admin-card__value {
-  margin: 0.4rem 0 0;
-  font-size: 1.5rem;
-  font-weight: 700;
+  margin: 0.45rem 0 0;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--ata-navy);
 }
 
 .admin-card__meta {
   margin: 0.35rem 0 0;
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--ata-text-muted);
   line-height: 1.4;
 }
 
@@ -69,7 +76,8 @@
 
 .admin-section h2 {
   margin: 0 0 0.75rem;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  color: var(--ata-navy);
 }
 
 .admin-actions {
@@ -80,29 +88,33 @@
 }
 
 .admin-actions button {
-  padding: 0.55rem 1rem;
+  padding: 0.6rem 1.05rem;
   border: none;
-  border-radius: 0.65rem;
-  background: #0f766e;
+  border-radius: 999px;
+  background: var(--ata-orange);
   color: #fff;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 8px 18px rgba(245, 104, 44, 0.24);
 }
 
 .admin-actions button.secondary {
-  background: #475569;
+  background: var(--ata-navy-mid);
+  box-shadow: none;
 }
 
 .admin-actions button:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .admin-table-wrap {
   overflow-x: auto;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.85rem;
+  border: 1px solid var(--ata-border);
+  border-radius: var(--ata-radius-md);
   background: #fff;
+  box-shadow: var(--ata-shadow-sm);
 }
 
 .admin-table {
@@ -115,21 +127,22 @@
   caption-side: top;
   padding: 0.75rem 0.9rem 0;
   text-align: left;
-  font-weight: 600;
-  color: #334155;
+  font-weight: 700;
+  color: var(--ata-navy-mid);
 }
 
 .admin-table th,
 .admin-table td {
   padding: 0.75rem 0.9rem;
   text-align: left;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--ata-border);
+  vertical-align: top;
 }
 
 .admin-table th {
-  background: #f8fafc;
-  color: #475569;
-  font-size: 0.8rem;
+  background: #faf6f3;
+  color: var(--ata-text-muted);
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -139,19 +152,20 @@
 }
 
 .admin-table a {
-  color: #0f766e;
+  color: var(--ata-orange-strong);
   word-break: break-all;
+  font-weight: 700;
 }
 
 .admin-empty {
   padding: 1rem;
-  color: #64748b;
+  color: var(--ata-text-muted);
   font-style: italic;
 }
 
 .admin-loading {
   padding: 0.75rem 0;
-  color: #64748b;
+  color: var(--ata-text-muted);
 }
 
 .admin-grid {
@@ -175,8 +189,8 @@
 
 .admin-list li {
   padding: 0.75rem 0.9rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.75rem;
+  border: 1px solid var(--ata-border);
+  border-radius: var(--ata-radius-md);
   background: #fff;
 }
 
@@ -184,5 +198,24 @@
   display: block;
   margin-top: 0.25rem;
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--ata-text-muted);
+}
+
+.admin-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.admin-pill--good {
+  background: var(--ata-success-soft);
+  color: #047857;
+}
+
+.admin-pill--bad {
+  background: var(--ata-danger-soft);
+  color: var(--ata-danger);
 }

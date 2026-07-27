@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 import { CitationList } from '../components/chat/CitationList'
 import { ConfidenceBadge } from '../components/chat/ConfidenceBadge'
 import { MessageBubble } from '../components/chat/MessageBubble'
@@ -71,5 +72,27 @@ describe('chat components', () => {
     )
 
     expect(screen.getByText('Unable to verify')).toBeInTheDocument()
+  })
+
+  it('renders feedback controls for rated answers', async () => {
+    const onFeedback = vi.fn()
+    render(
+      <MessageBubble
+        locale="en"
+        onFeedback={onFeedback}
+        message={{
+          id: 'assistant-1',
+          role: 'assistant',
+          content: 'EU annual tuition is 2600 EUR.',
+          status: 'complete',
+          queryId: '11111111-1111-1111-1111-111111111111',
+          feedbackStatus: 'idle',
+        }}
+      />,
+    )
+
+    expect(screen.getByRole('button', { name: 'Copy' })).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: 'Helpful' }))
+    expect(onFeedback).toHaveBeenCalledWith('assistant-1', true)
   })
 })

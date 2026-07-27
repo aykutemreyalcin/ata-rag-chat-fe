@@ -8,7 +8,8 @@ import './ChatPage.css'
 export function ChatPage() {
   const [locale, setLocale] = useState<ChatLocale>('en')
   const copy = getChatCopy(locale)
-  const { messages, isStreaming, submitQuestion, stopStreaming } = useChat()
+  const { messages, isStreaming, submitQuestion, stopStreaming, submitFeedback } =
+    useChat()
 
   return (
     <section className="panel" aria-labelledby="chat-heading">
@@ -21,6 +22,7 @@ export function ChatPage() {
         isStreaming={isStreaming}
         onSubmit={submitQuestion}
         onStop={stopStreaming}
+        onFeedback={submitFeedback}
       />
     </section>
   )

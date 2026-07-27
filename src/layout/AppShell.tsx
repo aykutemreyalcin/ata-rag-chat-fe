@@ -10,11 +10,16 @@ export function AppShell() {
       </a>
       <header className="shell__header">
         <div className="shell__brand">
-          <span className="shell__logo" aria-hidden>
-            ATA
+          <span className="shell__logo">
+            <img
+              src="/logo-akademiata.png"
+              alt="Akademia Techniczno-Artystyczna"
+              width={271}
+              height={56}
+            />
           </span>
           <div>
-            <p className="shell__title">AkademiaTA RAG Assistant</p>
+            <p className="shell__title">AkademiaTA Assistant</p>
             <p className="shell__subtitle">
               Grounded answers from akademiata.pl
             </p>

@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { FailedPagesTable } from '../components/admin/FailedPagesTable'
+import { FeedbackPanel } from '../components/admin/FeedbackPanel'
 import { QuestionsPanel } from '../components/admin/QuestionsPanel'
 import { SummaryCards } from '../components/admin/SummaryCards'
 import { SyncActions } from '../components/admin/SyncActions'
@@ -42,6 +43,9 @@ describe('admin components', () => {
           total_questions: 15,
           answered_questions: 12,
           unanswered_questions: 3,
+          helpful_count: 5,
+          not_helpful_count: 1,
+          feedback_rate: 0.4,
           active_sync_job: null,
         }}
       />,
@@ -51,6 +55,35 @@ describe('admin components', () => {
     expect(screen.getByText('450')).toBeInTheDocument()
     expect(screen.getByText('82%')).toBeInTheDocument()
     expect(screen.getByText('940 ms')).toBeInTheDocument()
+    expect(screen.getByText('5')).toBeInTheDocument()
+    expect(screen.getByText(/1 not helpful/i)).toBeInTheDocument()
+  })
+
+  it('renders feedback panel', () => {
+    render(
+      <FeedbackPanel
+        isLoading={false}
+        feedback={{
+          helpful_count: 2,
+          not_helpful_count: 1,
+          feedback_rate: 0.5,
+          recent: [
+            {
+              id: '11111111-1111-1111-1111-111111111111',
+              question: 'Tuition in Wrocław?',
+              answer: 'EU annual tuition is 2600 EUR.',
+              helpful: true,
+              created_at: '2026-07-24T12:00:00Z',
+              feedback_at: '2026-07-24T12:01:00Z',
+            },
+          ],
+        }}
+      />,
+    )
+
+    expect(screen.getByText('Answer feedback')).toBeInTheDocument()
+    expect(screen.getByText('Tuition in Wrocław?')).toBeInTheDocument()
+    expect(screen.getAllByText('Helpful').length).toBeGreaterThan(0)
   })
 
   it('renders failed pages table', () => {

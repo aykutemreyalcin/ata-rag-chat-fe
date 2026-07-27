@@ -1,24 +1,24 @@
 .status {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   border: 1px solid transparent;
 }
 
 .status--pending {
-  background: #f1f5f9;
-  color: #475569;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .status--up {
-  background: #ecfdf5;
-  border-color: #99f6e4;
-  color: #047857;
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #bbf7d0;
 }
 
 .status--down {
-  background: #fef2f2;
-  border-color: #fecaca;
-  color: #b91c1c;
+  background: rgba(248, 113, 113, 0.18);
+  border-color: rgba(248, 113, 113, 0.35);
+  color: #fecaca;
 }

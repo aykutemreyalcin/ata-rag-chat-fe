@@ -15,6 +15,7 @@ type ChatLayoutProps = {
   isStreaming: boolean
   onSubmit: (question: string) => void
   onStop: () => void
+  onFeedback?: (messageId: string, helpful: boolean) => void
 }
 
 export function ChatLayout({
@@ -26,6 +27,7 @@ export function ChatLayout({
   isStreaming,
   onSubmit,
   onStop,
+  onFeedback,
 }: ChatLayoutProps) {
   return (
     <div className="chat-layout">
@@ -33,12 +35,16 @@ export function ChatLayout({
         <LocaleToggle locale={locale} onChange={onLocaleChange} />
       </div>
 
-      <header>
+      <header className="chat-hero">
         <h1 id="chat-heading">{heading}</h1>
         <p className="panel__lead">{lead}</p>
       </header>
 
-      <MessageList messages={messages} locale={locale} />
+      <MessageList
+        messages={messages}
+        locale={locale}
+        onFeedback={onFeedback}
+      />
       <ChatLoadingStatus locale={locale} visible={isStreaming} />
       <ChatInput
         locale={locale}

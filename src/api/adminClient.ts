@@ -1,6 +1,7 @@
 import axios, { isAxiosError } from 'axios'
 import { adminAuthHeaders, getAdminApiBaseUrl } from '../config/adminAuth'
 import type {
+  AdminFeedbackResponse,
   AdminQuestionsResponse,
   AdminSummary,
   FailedPage,
@@ -59,6 +60,16 @@ export async function fetchAdminQuestions(
 ): Promise<AdminQuestionsResponse> {
   const { data } = await adminClient().get<AdminQuestionsResponse>(
     '/admin/questions',
+    { params: { limit } },
+  )
+  return data
+}
+
+export async function fetchAdminFeedback(
+  limit = 20,
+): Promise<AdminFeedbackResponse> {
+  const { data } = await adminClient().get<AdminFeedbackResponse>(
+    '/admin/feedback',
     { params: { limit } },
   )
   return data

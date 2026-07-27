@@ -21,6 +21,12 @@ type ChatCopy = {
   localeLabel: string
   roleUser: string
   roleAssistant: string
+  copy: string
+  copied: string
+  helpful: string
+  notHelpful: string
+  feedbackThanks: string
+  feedbackError: string
   confidenceLabels: Record<'high' | 'medium' | 'low' | 'unknown', string>
   suggestions: string[]
 }
@@ -49,6 +55,12 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
     localeLabel: 'Language',
     roleUser: 'You',
     roleAssistant: 'Assistant',
+    copy: 'Copy',
+    copied: 'Copied',
+    helpful: 'Helpful',
+    notHelpful: 'Not helpful',
+    feedbackThanks: 'Thanks for your feedback.',
+    feedbackError: 'Could not save feedback. Try again.',
     confidenceLabels: {
       high: 'High confidence',
       medium: 'Medium confidence',
@@ -56,7 +68,7 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
       unknown: 'Unknown confidence',
     },
     suggestions: [
-      'What is the tuition for Computer Science?',
+      'What is the tuition for Computer networks and cybersecurity in Wrocław?',
       'How do I apply?',
       'What documents are required?',
       "Where is the Dean's Office?",
@@ -85,6 +97,12 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
     localeLabel: 'Język',
     roleUser: 'Ty',
     roleAssistant: 'Asystent',
+    copy: 'Kopiuj',
+    copied: 'Skopiowano',
+    helpful: 'Pomocne',
+    notHelpful: 'Niepomocne',
+    feedbackThanks: 'Dziękujemy za opinię.',
+    feedbackError: 'Nie udało się zapisać opinii. Spróbuj ponownie.',
     confidenceLabels: {
       high: 'Wysoka pewność',
       medium: 'Średnia pewność',
@@ -92,7 +110,7 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
       unknown: 'Nieznana pewność',
     },
     suggestions: [
-      'Ile wynosi czesne na Informatyce?',
+      'Ile wynosi czesne za Inżynierię sieci i cyberbezpieczeństwo we Wrocławiu?',
       'Jak się zapisać?',
       'Jakie dokumenty są wymagane?',
       'Gdzie znajduje się dziekanat?',
