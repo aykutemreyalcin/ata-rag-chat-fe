@@ -17,6 +17,10 @@ describe('nginx SSE proxy configuration', () => {
     expect(nginxConfig).toContain('proxy_read_timeout 3600s')
   })
 
+  it('strips Origin on proxied api routes to avoid Spring CORS 403', () => {
+    expect(nginxConfig).toContain('proxy_set_header Origin ""')
+  })
+
   it('proxies backend health separately from healthz', () => {
     expect(nginxConfig).toContain('location = /health')
     expect(nginxConfig).toContain('${BACKEND_UPSTREAM}/health')
