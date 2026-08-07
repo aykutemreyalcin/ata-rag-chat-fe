@@ -7,6 +7,11 @@ import App from '../App'
 
 vi.mock('../api/client', () => ({
   fetchHealth: vi.fn().mockRejectedValue(new Error('offline')),
+  submitChatFeedback: vi.fn().mockResolvedValue({
+    query_id: '11111111-1111-1111-1111-111111111111',
+    helpful: true,
+    feedback_at: '2026-07-27T12:00:00Z',
+  }),
   apiClient: {},
 }))
 

@@ -108,6 +108,16 @@ export function SummaryCards({ summary, isLoading }: SummaryCardsProps) {
         </p>
         <p className="admin-card__meta">{pricingStatus}</p>
       </article>
+      <article className="admin-card">
+        <h2>Helpful</h2>
+        <p className="admin-card__value">
+          {formatNumber(summary.helpful_count)}
+        </p>
+        <p className="admin-card__meta">
+          {formatNumber(summary.not_helpful_count)} not helpful ·{' '}
+          {formatPercent(summary.feedback_rate)} rated
+        </p>
+      </article>
       {summary.active_sync_job && (
         <article className="admin-card">
           <h2>Active sync</h2>

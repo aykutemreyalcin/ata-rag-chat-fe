@@ -36,9 +36,10 @@ describe('sseClient parsers', () => {
   it('parses done payloads from backend contract', () => {
     expect(
       parseDonePayload(
-        '{"confidence":0.82,"answered":true,"source_count":1,"latency_ms":1240,"model":"gpt-4.1-mini"}',
+        '{"query_id":"11111111-1111-1111-1111-111111111111","confidence":0.82,"answered":true,"source_count":1,"latency_ms":1240,"model":"gpt-4.1-mini"}',
       ),
     ).toEqual({
+      query_id: '11111111-1111-1111-1111-111111111111',
       confidence: 0.82,
       answered: true,
       source_count: 1,
@@ -57,6 +58,7 @@ describe('sseClient parsers', () => {
   it('maps done events to chat confidence', () => {
     expect(
       confidenceFromDone({
+        query_id: null,
         confidence: 0.35,
         answered: false,
         source_count: 0,
@@ -110,6 +112,7 @@ describe('sseClient parsers', () => {
     ])
     expect(onToken).toHaveBeenCalledWith('Hello ')
     expect(onDone).toHaveBeenCalledWith({
+      query_id: null,
       confidence: 0.7,
       answered: true,
       source_count: 1,

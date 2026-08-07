@@ -24,6 +24,7 @@ export type ChatRequest = {
 
 /** Matches SSE `done` event payload (ChatDoneEvent.java). */
 export type ChatDoneEvent = {
+  query_id?: string | null
   confidence: number
   answered: boolean
   source_count: number
@@ -43,6 +44,8 @@ export type ChatMessageRole = 'user' | 'assistant'
 
 export type ChatMessageStatus = 'streaming' | 'complete' | 'error'
 
+export type FeedbackStatus = 'idle' | 'pending' | 'success' | 'error'
+
 export type ChatMessage = {
   id: string
   role: ChatMessageRole
@@ -53,6 +56,21 @@ export type ChatMessage = {
   error?: string
   model?: string
   latencyMs?: number
+  queryId?: string | null
+  helpful?: boolean | null
+  feedbackStatus?: FeedbackStatus
+  feedbackError?: string | null
+}
+
+export type ChatFeedbackRequest = {
+  query_id: string
+  helpful: boolean
+}
+
+export type ChatFeedbackResponse = {
+  query_id: string
+  helpful: boolean
+  feedback_at: string
 }
 
 export type ChatStreamEventType = 'token' | 'sources' | 'error' | 'done'
@@ -84,7 +102,25 @@ export type AdminSummary = {
   total_questions?: number
   answered_questions?: number
   unanswered_questions?: number
+  helpful_count?: number
+  not_helpful_count?: number
+  feedback_rate?: number | null
   active_sync_job?: string | null
+}
+
+/** Matches GET /api/admin/feedback (AdminFeedbackResponse.java). */
+export type AdminFeedbackResponse = {
+  helpful_count: number
+  not_helpful_count: number
+  feedback_rate: number | null
+  recent: Array<{
+    id: string
+    question: string
+    answer: string | null
+    helpful: boolean
+    created_at: string
+    feedback_at: string | null
+  }>
 }
 
 /** Matches GET /api/admin/failed-pages items. */

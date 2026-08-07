@@ -57,3 +57,24 @@ a {
 a:hover {
   color: var(--ata-link-hover);
 }
+
+.panel {
+  background: var(--ata-surface);
+  border: 1px solid var(--ata-border);
+  border-radius: var(--ata-radius-lg);
+  box-shadow: var(--ata-shadow-sm);
+  padding: 1.25rem 1.35rem 1.5rem;
+}
+
+.panel__lead {
+  margin: 0.4rem 0 0;
+  color: var(--ata-muted);
+  max-width: 42rem;
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: 1rem;
+    border-radius: var(--ata-radius-md);
+  }
+}

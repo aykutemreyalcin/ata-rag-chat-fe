@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react'
+import { submitChatFeedback } from '../api/client'
 import { confidenceFromDone, streamChat } from '../api/sseClient'
 import type { ChatMessage } from '../api/types'
 
@@ -24,6 +25,65 @@ export function useChat() {
     )
   }, [])
 
+  const submitFeedback = useCallback(
+    async (messageId: string, helpful: boolean) => {
+      let queryId: string | null | undefined
+      setMessages((current) => {
+        const target = current.find((message) => message.id === messageId)
+        queryId = target?.queryId
+        if (!target?.queryId) {
+          return current
+        }
+        return current.map((message) =>
+          message.id === messageId
+            ? {
+                ...message,
+                helpful,
+                feedbackStatus: 'pending',
+                feedbackError: null,
+              }
+            : message,
+        )
+      })
+
+      if (!queryId) {
+        return
+      }
+
+      try {
+        await submitChatFeedback({ query_id: queryId, helpful })
+        setMessages((current) =>
+          current.map((message) =>
+            message.id === messageId
+              ? {
+                  ...message,
+                  helpful,
+                  feedbackStatus: 'success',
+                  feedbackError: null,
+                }
+              : message,
+          ),
+        )
+      } catch (error) {
+        setMessages((current) =>
+          current.map((message) =>
+            message.id === messageId
+              ? {
+                  ...message,
+                  feedbackStatus: 'error',
+                  feedbackError:
+                    error instanceof Error
+                      ? error.message
+                      : 'Feedback could not be saved',
+                }
+              : message,
+          ),
+        )
+      }
+    },
+    [],
+  )
+
   const submitQuestion = useCallback(
     async (question: string) => {
       const trimmed = question.trim()
@@ -41,6 +101,7 @@ export function useChat() {
         role: 'assistant',
         content: '',
         status: 'streaming',
+        feedbackStatus: 'idle',
       }
 
       setMessages((current) => [...current, userMessage, assistantMessage])
@@ -78,6 +139,7 @@ export function useChat() {
                       confidence: confidenceFromDone(result),
                       model: result.model,
                       latencyMs: result.latency_ms,
+                      queryId: result.query_id ?? null,
                     }
                   : message,
               ),
@@ -112,5 +174,6 @@ export function useChat() {
     isStreaming,
     submitQuestion,
     stopStreaming,
+    submitFeedback,
   }
 }

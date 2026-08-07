@@ -16,9 +16,11 @@ Deploy as a **Dockerfile** resource. The static SPA is served by nginx; `/api/` 
 
 ### Build args
 
-| Arg                 | Value  |
-| ------------------- | ------ |
-| `VITE_API_BASE_URL` | `/api` |
+| Arg                   | Value                            |
+| --------------------- | -------------------------------- |
+| `VITE_API_BASE_URL`   | `/api`                           |
+| `VITE_ADMIN_USER`     | same as BE `BASIC_AUTH_USER`     |
+| `VITE_ADMIN_PASSWORD` | same as BE `BASIC_AUTH_PASSWORD` |
 
 ### Runtime env
 

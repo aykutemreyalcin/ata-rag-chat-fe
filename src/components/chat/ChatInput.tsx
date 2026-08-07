@@ -45,31 +45,55 @@ export function ChatInput({
       onSubmit={handleSubmit}
       aria-busy={isStreaming}
     >
-      <label htmlFor="question">{copy.questionLabel}</label>
-      <textarea
-        id="question"
-        rows={3}
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder={copy.questionPlaceholder}
-        disabled={isStreaming}
-        aria-describedby="question-hint"
-      />
-      <p id="question-hint" className="chat-input__hint">
-        {copy.questionHint}
-      </p>
-      <div className="chat-input__actions">
-        {isStreaming ? (
-          <button type="button" className="secondary" onClick={onStop}>
-            {copy.stop}
-          </button>
-        ) : (
-          <button type="submit" disabled={!value.trim()}>
-            {copy.send}
-          </button>
-        )}
+      <label className="chat-input__label" htmlFor="question">
+        {copy.questionLabel}
+      </label>
+      <div className="chat-input__shell">
+        <span className="chat-input__spark" aria-hidden>
+          ✦
+        </span>
+        <textarea
+          id="question"
+          rows={1}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={copy.questionPlaceholder}
+          disabled={isStreaming}
+          aria-describedby="question-hint"
+        />
+        <div className="chat-input__actions">
+          {isStreaming ? (
+            <button
+              type="button"
+              className="chat-input__stop"
+              onClick={onStop}
+              aria-label={copy.stop}
+            >
+              <span aria-hidden>■</span>
+              {copy.stop}
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="chat-input__send"
+              disabled={!value.trim()}
+              aria-label={copy.send}
+            >
+              <span>{copy.send}</span>
+              <svg aria-hidden viewBox="0 0 24 24">
+                <path d="m4 4 17 8-17 8 3.2-8L4 4Zm3.7 7h7.8L7 7l.7 4Zm-.7 6 8.5-4H7.7L7 17Z" />
+              </svg>
+            </button>
+          )}
+        </div>
       </div>
+      <p id="question-hint" className="chat-input__hint">
+        <span>{copy.questionHint}</span>
+        <span className="chat-input__shortcut" aria-hidden>
+          {navigator.platform.includes('Mac') ? '⌘' : 'Ctrl'} + Enter
+        </span>
+      </p>
     </form>
   )
 }

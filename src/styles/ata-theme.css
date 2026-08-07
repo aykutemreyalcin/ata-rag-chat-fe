@@ -80,6 +80,19 @@
   --ata-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
   --ata-shadow-header: 0 2px 12px rgba(0, 0, 0, 0.06);
 
+  /* Aliases used by main-branch components */
+  --ata-text-muted: var(--ata-muted);
+  --ata-orange-soft: var(--ata-orange-light);
+  --ata-orange-strong: var(--ata-orange-dark);
+  --ata-navy: var(--ata-black);
+  --ata-navy-mid: #333333;
+  --ata-navy-soft: #555555;
+  --ata-surface-elevated: var(--ata-surface);
+  --ata-danger: var(--ata-error);
+  --ata-danger-soft: var(--ata-error-bg);
+  --ata-success-soft: var(--ata-success-bg);
+  --ata-warning-soft: var(--ata-warning-bg);
+
   color-scheme: light;
 }
 
@@ -140,6 +153,19 @@
   --ata-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
   --ata-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
   --ata-shadow-header: 0 2px 16px rgba(0, 0, 0, 0.5);
+
+  /* Aliases used by main-branch components */
+  --ata-text-muted: var(--ata-muted);
+  --ata-orange-soft: var(--ata-orange-light);
+  --ata-orange-strong: var(--ata-orange);
+  --ata-navy: var(--ata-white);
+  --ata-navy-mid: #cccccc;
+  --ata-navy-soft: #999999;
+  --ata-surface-elevated: var(--ata-surface);
+  --ata-danger: var(--ata-error);
+  --ata-danger-soft: var(--ata-error-bg);
+  --ata-success-soft: var(--ata-success-bg);
+  --ata-warning-soft: var(--ata-warning-bg);
 
   color-scheme: dark;
 }

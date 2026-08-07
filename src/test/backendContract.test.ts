@@ -2,9 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
-const BACKEND_ROOT = resolve(
-  'C:/Users/alvin/Desktop/ATA Builders/Project 3/ata-rag-chat-be',
-)
+const BACKEND_ROOT = resolve(__dirname, '../../../ata-rag-chat-be')
 
 function readBackend(relativePath: string): string {
   return readFileSync(resolve(BACKEND_ROOT, relativePath), 'utf8')

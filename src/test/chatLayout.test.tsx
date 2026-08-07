@@ -67,6 +67,7 @@ describe('chat layout components', () => {
 
     expect(screen.getByRole('heading', { name: 'Chat' })).toBeInTheDocument()
     expect(screen.getByText('Suggested questions')).toBeInTheDocument()
+    expect(screen.getByText('Ask AkademiaTA')).toBeInTheDocument()
     expect(
       screen.getByRole('textbox', { name: 'Your question' }),
     ).toBeInTheDocument()
