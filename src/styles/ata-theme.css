@@ -1,15 +1,30 @@
 /**
  * ATA palette: orange + white (light) / orange + black (dark). Text uses black or white.
  */
-:root,
-[data-theme='light'] {
+
+/* Brand + layout tokens shared by both themes */
+:root {
   --ata-orange: #f5682c;
   --ata-orange-dark: #e04e12;
-  --ata-orange-light: #fff4ef;
-  --ata-orange-muted: #ffd4c2;
-
   --ata-black: #000000;
   --ata-white: #ffffff;
+
+  --ata-accent: var(--ata-orange);
+  --ata-accent-contrast: #ffffff;
+  --ata-focus: var(--ata-orange);
+
+  --ata-font-display: 'Montserrat', 'Poppins', system-ui, sans-serif;
+  --ata-font-body: 'Poppins', 'Lato', system-ui, sans-serif;
+
+  --ata-radius-pill: 999px;
+  --ata-radius-lg: 1rem;
+  --ata-radius-md: 0.75rem;
+  --ata-radius-sm: 0.5rem;
+}
+
+[data-theme='light'] {
+  --ata-orange-light: #fff4ef;
+  --ata-orange-muted: #ffd4c2;
 
   --ata-text: #000000;
   --ata-heading: #000000;
@@ -37,14 +52,11 @@
 
   --ata-link: var(--ata-orange);
   --ata-link-hover: var(--ata-orange-dark);
-  --ata-accent: var(--ata-orange);
-  --ata-accent-contrast: #ffffff;
 
   --ata-btn-secondary-bg: #000000;
   --ata-btn-secondary-hover: #333333;
   --ata-btn-secondary-text: #ffffff;
 
-  --ata-focus: var(--ata-orange);
   --ata-focus-ring: rgba(245, 104, 44, 0.25);
 
   --ata-success: #15803d;
@@ -67,14 +79,6 @@
   --ata-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
   --ata-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
   --ata-shadow-header: 0 2px 12px rgba(0, 0, 0, 0.06);
-
-  --ata-font-display: 'Montserrat', 'Poppins', system-ui, sans-serif;
-  --ata-font-body: 'Poppins', 'Lato', system-ui, sans-serif;
-
-  --ata-radius-pill: 999px;
-  --ata-radius-lg: 1rem;
-  --ata-radius-md: 0.75rem;
-  --ata-radius-sm: 0.5rem;
 
   color-scheme: light;
 }
@@ -116,8 +120,11 @@
 
   --ata-focus-ring: rgba(245, 104, 44, 0.35);
 
+  --ata-success: #86efac;
   --ata-success-bg: rgba(21, 128, 61, 0.18);
+  --ata-warning: #fbbf24;
   --ata-warning-bg: rgba(180, 83, 9, 0.18);
+  --ata-error: #fca5a5;
   --ata-error-bg: rgba(220, 38, 38, 0.15);
 
   --ata-status-pending-bg: #1a1a1a;
