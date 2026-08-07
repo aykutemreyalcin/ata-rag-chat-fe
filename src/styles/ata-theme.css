@@ -1,0 +1,171 @@
+/**
+ * ATA palette: orange + white (light) / orange + black (dark). Text uses black or white.
+ */
+
+/* Brand + layout tokens shared by both themes */
+:root {
+  --ata-orange: #f5682c;
+  --ata-orange-dark: #e04e12;
+  --ata-black: #000000;
+  --ata-white: #ffffff;
+
+  --ata-accent: var(--ata-orange);
+  --ata-accent-contrast: #ffffff;
+  --ata-focus: var(--ata-orange);
+
+  --ata-font-display: 'Montserrat', 'Poppins', system-ui, sans-serif;
+  --ata-font-body: 'Poppins', 'Lato', system-ui, sans-serif;
+
+  --ata-radius-pill: 999px;
+  --ata-radius-lg: 1rem;
+  --ata-radius-md: 0.75rem;
+  --ata-radius-sm: 0.5rem;
+}
+
+[data-theme='light'] {
+  --ata-orange-light: #fff4ef;
+  --ata-orange-muted: #ffd4c2;
+
+  --ata-text: #000000;
+  --ata-heading: #000000;
+  --ata-muted: #333333;
+  --ata-muted-light: #555555;
+
+  --ata-bg: #ffffff;
+  --ata-surface: #ffffff;
+  --ata-surface-muted: #fafafa;
+
+  --ata-border: #e5e5e5;
+  --ata-border-strong: #cccccc;
+
+  --ata-header-bg: #ffffff;
+  --ata-header-text: #000000;
+  --ata-header-muted: #333333;
+  --ata-header-border: var(--ata-orange);
+  --ata-header-link: var(--ata-orange);
+
+  --ata-nav-text: #000000;
+  --ata-nav-border: #000000;
+  --ata-nav-hover-bg: var(--ata-orange-light);
+  --ata-nav-active-bg: var(--ata-orange);
+  --ata-nav-active-text: #ffffff;
+
+  --ata-link: var(--ata-orange);
+  --ata-link-hover: var(--ata-orange-dark);
+
+  --ata-btn-secondary-bg: #000000;
+  --ata-btn-secondary-hover: #333333;
+  --ata-btn-secondary-text: #ffffff;
+
+  --ata-focus-ring: rgba(245, 104, 44, 0.25);
+
+  --ata-success: #15803d;
+  --ata-success-bg: #ecfdf3;
+  --ata-warning: #b45309;
+  --ata-warning-bg: #fffbeb;
+  --ata-error: #dc2626;
+  --ata-error-bg: #fef2f2;
+
+  --ata-status-pending-bg: #f5f5f5;
+  --ata-status-pending-text: #333333;
+  --ata-status-pending-border: #cccccc;
+  --ata-status-up-bg: #ecfdf3;
+  --ata-status-up-text: #15803d;
+  --ata-status-up-border: #86efac;
+  --ata-status-down-bg: #fef2f2;
+  --ata-status-down-text: #dc2626;
+  --ata-status-down-border: #fecaca;
+
+  --ata-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --ata-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --ata-shadow-header: 0 2px 12px rgba(0, 0, 0, 0.06);
+
+  /* Aliases used by main-branch components */
+  --ata-text-muted: var(--ata-muted);
+  --ata-orange-soft: var(--ata-orange-light);
+  --ata-orange-strong: var(--ata-orange-dark);
+  --ata-navy: var(--ata-black);
+  --ata-navy-mid: #333333;
+  --ata-navy-soft: #555555;
+  --ata-surface-elevated: var(--ata-surface);
+  --ata-danger: var(--ata-error);
+  --ata-danger-soft: var(--ata-error-bg);
+  --ata-success-soft: var(--ata-success-bg);
+  --ata-warning-soft: var(--ata-warning-bg);
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --ata-orange-light: rgba(245, 104, 44, 0.14);
+  --ata-orange-muted: rgba(245, 104, 44, 0.35);
+
+  --ata-text: #ffffff;
+  --ata-heading: #ffffff;
+  --ata-muted: #cccccc;
+  --ata-muted-light: #999999;
+
+  --ata-bg: #0a0a0a;
+  --ata-surface: #141414;
+  --ata-surface-muted: #1a1a1a;
+
+  --ata-border: #2a2a2a;
+  --ata-border-strong: #3a3a3a;
+
+  --ata-header-bg: #000000;
+  --ata-header-text: #ffffff;
+  --ata-header-muted: #cccccc;
+  --ata-header-border: var(--ata-orange);
+  --ata-header-link: var(--ata-orange);
+
+  --ata-nav-text: #ffffff;
+  --ata-nav-border: #ffffff;
+  --ata-nav-hover-bg: rgba(245, 104, 44, 0.15);
+  --ata-nav-active-bg: var(--ata-orange);
+  --ata-nav-active-text: #ffffff;
+
+  --ata-link: var(--ata-orange);
+  --ata-link-hover: #ff8a5c;
+
+  --ata-btn-secondary-bg: #ffffff;
+  --ata-btn-secondary-hover: #e5e5e5;
+  --ata-btn-secondary-text: #000000;
+
+  --ata-focus-ring: rgba(245, 104, 44, 0.35);
+
+  --ata-success: #86efac;
+  --ata-success-bg: rgba(21, 128, 61, 0.18);
+  --ata-warning: #fbbf24;
+  --ata-warning-bg: rgba(180, 83, 9, 0.18);
+  --ata-error: #fca5a5;
+  --ata-error-bg: rgba(220, 38, 38, 0.15);
+
+  --ata-status-pending-bg: #1a1a1a;
+  --ata-status-pending-text: #cccccc;
+  --ata-status-pending-border: #3a3a3a;
+  --ata-status-up-bg: rgba(21, 128, 61, 0.2);
+  --ata-status-up-text: #86efac;
+  --ata-status-up-border: rgba(134, 239, 172, 0.4);
+  --ata-status-down-bg: rgba(220, 38, 38, 0.2);
+  --ata-status-down-text: #fecaca;
+  --ata-status-down-border: rgba(252, 165, 165, 0.4);
+
+  --ata-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --ata-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --ata-shadow-header: 0 2px 16px rgba(0, 0, 0, 0.5);
+
+  /* Aliases used by main-branch components */
+  --ata-text-muted: var(--ata-muted);
+  --ata-orange-soft: var(--ata-orange-light);
+  --ata-orange-strong: var(--ata-orange);
+  --ata-navy: var(--ata-white);
+  --ata-navy-mid: #cccccc;
+  --ata-navy-soft: #999999;
+  --ata-surface-elevated: var(--ata-surface);
+  --ata-danger: var(--ata-error);
+  --ata-danger-soft: var(--ata-error-bg);
+  --ata-success-soft: var(--ata-success-bg);
+  --ata-warning-soft: var(--ata-warning-bg);
+
+  color-scheme: dark;
+}

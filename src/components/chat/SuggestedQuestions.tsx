@@ -24,7 +24,10 @@ export function SuggestedQuestions({
   }))
 
   return (
-    <section className="suggestions-section" aria-labelledby="suggested-heading">
+    <section
+      className="suggestions-section"
+      aria-labelledby="suggested-heading"
+    >
       <div className="suggestions-section__heading">
         <h2 id="suggested-heading">{copy.suggestedHeading}</h2>
         <span>{locale === 'pl' ? 'Kliknij, aby zapytać' : 'Click to ask'}</span>

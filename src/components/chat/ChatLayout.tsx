@@ -75,9 +75,7 @@ export function ChatLayout({
                 <i className="chat-hero__check" aria-hidden>
                   ✓
                 </i>
-                {locale === 'pl'
-                  ? 'Zweryfikowane źródła'
-                  : 'Verified sources'}
+                {locale === 'pl' ? 'Zweryfikowane źródła' : 'Verified sources'}
               </span>
               <span>
                 <i className="chat-hero__check" aria-hidden>

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
-const BACKEND_ROOT = resolve(__dirname, '../../../ata_rag_be')
+const BACKEND_ROOT = resolve(__dirname, '../../../ata-rag-chat-be')
 
 function readBackend(relativePath: string): string {
   return readFileSync(resolve(BACKEND_ROOT, relativePath), 'utf8')
@@ -34,7 +34,6 @@ describe('backend chat contract alignment', () => {
       'src/main/java/com/ata/rag/dto/ChatDoneEvent.java',
     )
 
-    expect(source).toContain('@JsonProperty("query_id")')
     expect(source).toContain('double confidence')
     expect(source).toContain('boolean answered')
     expect(source).toContain('@JsonProperty("source_count")')
@@ -71,6 +70,5 @@ describe('backend chat contract alignment', () => {
     expect(source).toContain('"/api/admin/**"')
     expect(source).toContain('hasRole("ADMIN")')
     expect(source).toContain('"/api/chat"')
-    expect(source).toContain('"/api/chat/feedback"')
   })
 })

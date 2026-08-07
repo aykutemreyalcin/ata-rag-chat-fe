@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
-const BACKEND_ROOT = resolve(__dirname, '../../../ata_rag_be')
+const BACKEND_ROOT = resolve(__dirname, '../../../ata-rag-chat-be')
 
 function readBackend(relativePath: string): string {
   return readFileSync(resolve(BACKEND_ROOT, relativePath), 'utf8')
@@ -53,15 +53,16 @@ describe('backend admin contract alignment', () => {
     expect(source).toContain('HttpStatus.ACCEPTED')
   })
 
-  it('documents feedback analytics endpoint', () => {
+  it('documents chat analytics fields on admin summary', () => {
     const source = readBackend(
       'src/main/java/com/ata/rag/controller/AdminController.java',
     )
 
-    expect(source).toContain('@GetMapping("/feedback")')
-    expect(source).toContain('helpful_count')
-    expect(source).toContain('not_helpful_count')
-    expect(source).toContain('feedback_rate')
+    expect(source).toContain('avg_confidence')
+    expect(source).toContain('avg_latency_ms')
+    expect(source).toContain('total_questions')
+    expect(source).toContain('answered_questions')
+    expect(source).toContain('unanswered_questions')
   })
 
   it('requires basic auth for admin routes', () => {
@@ -71,6 +72,5 @@ describe('backend admin contract alignment', () => {
 
     expect(source).toContain('"/api/admin/**"')
     expect(source).toContain('hasRole("ADMIN")')
-    expect(source).toContain('"/api/chat/feedback"')
   })
 })

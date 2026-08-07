@@ -1,41 +1,12 @@
-:root {
-  --ata-orange: #f5682c;
-  --ata-orange-soft: #fff1ea;
-  --ata-orange-strong: #e2551a;
-  --ata-navy: #101422;
-  --ata-navy-mid: #20253d;
-  --ata-navy-soft: #2b314d;
-  --ata-surface: #fffaf7;
-  --ata-surface-elevated: #ffffff;
-  --ata-border: #e8dcd4;
-  --ata-text: #101422;
-  --ata-text-muted: #5b647a;
-  --ata-success: #0f766e;
-  --ata-success-soft: #ecfdf5;
-  --ata-warning: #b45309;
-  --ata-warning-soft: #fff7ed;
-  --ata-danger: #b91c1c;
-  --ata-danger-soft: #fef2f2;
-  --ata-radius-sm: 0.65rem;
-  --ata-radius-md: 0.9rem;
-  --ata-radius-lg: 1.25rem;
-  --ata-shadow-sm: 0 8px 24px rgba(16, 20, 34, 0.06);
-  --ata-shadow-md: 0 16px 40px rgba(16, 20, 34, 0.1);
-  --ata-focus: #f5682c;
-  --ata-font:
-    'Nunito Sans',
-    Inter,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+@import './styles/ata-theme.css';
 
-  font-family: var(--ata-font);
+:root {
+  font-family: var(--ata-font-body);
   line-height: 1.5;
   font-weight: 400;
   color: var(--ata-text);
-  background: var(--ata-surface);
+  background: var(--ata-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -49,15 +20,17 @@
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    radial-gradient(circle at top left, rgba(245, 104, 44, 0.12), transparent 34%),
-    linear-gradient(180deg, #fffaf7 0%, #f4efe9 100%);
+  background: var(--ata-bg);
   color: var(--ata-text);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 button,
 textarea {
   font: inherit;
+  color: inherit;
 }
 
 :focus-visible {
@@ -70,8 +43,23 @@ code {
   font-size: 0.9em;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--ata-font-display);
+  color: var(--ata-heading);
+}
+
+a {
+  color: var(--ata-link);
+}
+
+a:hover {
+  color: var(--ata-link-hover);
+}
+
 .panel {
-  background: var(--ata-surface-elevated);
+  background: var(--ata-surface);
   border: 1px solid var(--ata-border);
   border-radius: var(--ata-radius-lg);
   box-shadow: var(--ata-shadow-sm);
@@ -80,7 +68,7 @@ code {
 
 .panel__lead {
   margin: 0.4rem 0 0;
-  color: var(--ata-text-muted);
+  color: var(--ata-muted);
   max-width: 42rem;
 }
 

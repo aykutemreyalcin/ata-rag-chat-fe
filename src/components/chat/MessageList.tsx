@@ -14,15 +14,15 @@ export function MessageList({
   onFeedback,
 }: MessageListProps) {
   if (messages.length === 0) {
-    return <span className="chat-empty-sr" role="status">Ask AkademiaTA</span>
+    return (
+      <span className="chat-empty-sr" role="status">
+        Ask AkademiaTA
+      </span>
+    )
   }
 
   return (
-    <div
-      className="message-list"
-      aria-live="polite"
-      aria-label="Chat messages"
-    >
+    <div className="message-list" aria-live="polite" aria-label="Chat messages">
       {messages.map((message) => (
         <MessageBubble
           key={message.id}
