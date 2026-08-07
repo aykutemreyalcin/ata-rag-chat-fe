@@ -56,7 +56,11 @@
 }
 
 .admin-card:nth-child(even) {
-  border-top-color: var(--ata-navy);
+  border-top-color: var(--ata-black);
+}
+
+[data-theme='dark'] .admin-card:nth-child(even) {
+  border-top-color: var(--ata-white);
 }
 
 .admin-card h2,
