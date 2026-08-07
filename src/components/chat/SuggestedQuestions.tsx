@@ -16,7 +16,10 @@ export function SuggestedQuestions({
   const copy = getChatCopy(locale)
 
   return (
-    <section aria-labelledby="suggested-heading">
+    <section
+      className="suggestions-section"
+      aria-labelledby="suggested-heading"
+    >
       <h2 id="suggested-heading">{copy.suggestedHeading}</h2>
       <ul className="suggestions">
         {copy.suggestions.map((item) => (

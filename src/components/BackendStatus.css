@@ -1,24 +1,26 @@
 .status {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
+  padding: 0.38rem 0.75rem;
+  border-radius: var(--ata-radius-pill);
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
 .status--pending {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--ata-status-pending-bg);
+  color: var(--ata-status-pending-text);
+  border-color: var(--ata-status-pending-border);
 }
 
 .status--up {
-  background: #ecfdf5;
-  border-color: #99f6e4;
-  color: #047857;
+  background: var(--ata-status-up-bg);
+  border-color: var(--ata-status-up-border);
+  color: var(--ata-status-up-text);
 }
 
 .status--down {
-  background: #fef2f2;
-  border-color: #fecaca;
-  color: #b91c1c;
+  background: var(--ata-status-down-bg);
+  border-color: var(--ata-status-down-border);
+  color: var(--ata-status-down-text);
 }
