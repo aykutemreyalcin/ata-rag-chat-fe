@@ -23,11 +23,42 @@ export async function fetchHealth(): Promise<HealthResponse> {
 export async function submitChatFeedback(
   request: ChatFeedbackRequest,
 ): Promise<ChatFeedbackResponse> {
-  const { data } = await apiClient.post<ChatFeedbackResponse>(
-    '/chat/feedback',
-    request,
-  )
-  return data
+  const controller = new AbortController()
+  const timeoutId = window.setTimeout(() => controller.abort(), 15_000)
+
+  try {
+    const response = await fetch(`${getApiBaseUrl()}/chat/feedback`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+      signal: controller.signal,
+    })
+
+    if (!response.ok) {
+      let message = `Feedback request failed (${response.status})`
+      try {
+        const payload = (await response.json()) as { message?: string }
+        if (typeof payload.message === 'string' && payload.message.trim()) {
+          message = payload.message
+        }
+      } catch {
+        // ignore malformed error payloads
+      }
+      throw new Error(message)
+    }
+
+    return (await response.json()) as ChatFeedbackResponse
+  } catch (error) {
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      throw new Error('Feedback request timed out')
+    }
+    throw error
+  } finally {
+    window.clearTimeout(timeoutId)
+  }
 }
 
 export { streamChat } from './sseClient'

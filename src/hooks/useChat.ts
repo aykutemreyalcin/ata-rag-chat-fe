@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { submitChatFeedback } from '../api/client'
 import { confidenceFromDone, streamChat } from '../api/sseClient'
 import type { ChatMessage } from '../api/types'
@@ -11,6 +11,11 @@ export function useChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isStreaming, setIsStreaming] = useState(false)
   const abortRef = useRef<AbortController | null>(null)
+  const messagesRef = useRef<ChatMessage[]>([])
+
+  useEffect(() => {
+    messagesRef.current = messages
+  }, [messages])
 
   const stopStreaming = useCallback(() => {
     abortRef.current?.abort()
@@ -27,14 +32,14 @@ export function useChat() {
 
   const submitFeedback = useCallback(
     async (messageId: string, helpful: boolean) => {
-      let queryId: string | null | undefined
-      setMessages((current) => {
-        const target = current.find((message) => message.id === messageId)
-        queryId = target?.queryId
-        if (!target?.queryId) {
-          return current
-        }
-        return current.map((message) =>
+      const target = messagesRef.current.find((message) => message.id === messageId)
+      const queryId = target?.queryId
+      if (!queryId) {
+        return
+      }
+
+      setMessages((current) =>
+        current.map((message) =>
           message.id === messageId
             ? {
                 ...message,
@@ -43,12 +48,8 @@ export function useChat() {
                 feedbackError: null,
               }
             : message,
-        )
-      })
-
-      if (!queryId) {
-        return
-      }
+        ),
+      )
 
       try {
         await submitChatFeedback({ query_id: queryId, helpful })
