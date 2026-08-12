@@ -68,7 +68,7 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
       unknown: 'Unknown confidence',
     },
     suggestions: [
-      'What is the tuition for Computer networks and cybersecurity in Wrocław?',
+      'What is the tuition for Computer Science in Warsaw?',
       'How do I apply?',
       'What documents are required?',
       "Where is the Dean's Office?",
@@ -110,7 +110,7 @@ export const CHAT_COPY: Record<ChatLocale, ChatCopy> = {
       unknown: 'Nieznana pewność',
     },
     suggestions: [
-      'Ile wynosi czesne za Inżynierię sieci i cyberbezpieczeństwo we Wrocławiu?',
+      'Ile kosztuje informatyka w Warszawie?',
       'Jak się zapisać?',
       'Jakie dokumenty są wymagane?',
       'Gdzie znajduje się dziekanat?',
