@@ -113,7 +113,10 @@ function MessageActions({
         </p>
       )}
       {message.feedbackStatus === 'error' && (
-        <p className="message__feedback-status message__feedback-status--error" role="alert">
+        <p
+          className="message__feedback-status message__feedback-status--error"
+          role="alert"
+        >
           {message.feedbackError ?? copy.feedbackError}
         </p>
       )}

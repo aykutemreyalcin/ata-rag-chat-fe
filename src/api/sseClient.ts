@@ -111,8 +111,7 @@ export function parseDonePayload(data: string): ChatDoneEvent {
   if (payload && typeof payload === 'object') {
     const record = payload as Record<string, unknown>
     return {
-      query_id:
-        typeof record.query_id === 'string' ? record.query_id : null,
+      query_id: typeof record.query_id === 'string' ? record.query_id : null,
       confidence: typeof record.confidence === 'number' ? record.confidence : 0,
       answered: record.answered === true,
       source_count:

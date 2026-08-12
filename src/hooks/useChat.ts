@@ -32,7 +32,9 @@ export function useChat() {
 
   const submitFeedback = useCallback(
     async (messageId: string, helpful: boolean) => {
-      const target = messagesRef.current.find((message) => message.id === messageId)
+      const target = messagesRef.current.find(
+        (message) => message.id === messageId,
+      )
       const queryId = target?.queryId
       if (!queryId) {
         return
