@@ -4,6 +4,12 @@
   line-height: 1.5;
 }
 
+.admin-panel h1 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
 .admin-notice {
   margin-bottom: 1rem;
   padding: 0.9rem 1rem;
@@ -12,9 +18,9 @@
 }
 
 .admin-notice--info {
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
-  color: #1d4ed8;
+  background: var(--ata-orange-light);
+  border: 1px solid var(--ata-orange-muted);
+  color: var(--ata-text);
 }
 
 .admin-notice--error {
@@ -25,8 +31,8 @@
 
 .admin-notice--success {
   background: var(--ata-success-soft);
-  border: 1px solid #99f6e4;
-  color: #047857;
+  border: 1px solid rgba(31, 157, 99, 0.35);
+  color: var(--ata-success);
 }
 
 .admin-cards {
@@ -41,11 +47,20 @@
 }
 
 .admin-card {
-  background: #fff;
+  background: var(--ata-surface);
   border: 1px solid var(--ata-border);
   border-radius: var(--ata-radius-md);
   padding: 1rem;
   box-shadow: var(--ata-shadow-sm);
+  border-top: 3px solid var(--ata-orange);
+}
+
+.admin-card:nth-child(even) {
+  border-top-color: var(--ata-black);
+}
+
+[data-theme='dark'] .admin-card:nth-child(even) {
+  border-top-color: var(--ata-white);
 }
 
 .admin-card h2,
@@ -60,7 +75,7 @@
   margin: 0.45rem 0 0;
   font-size: 1.55rem;
   font-weight: 800;
-  color: var(--ata-navy);
+  color: var(--ata-heading);
 }
 
 .admin-card__meta {
@@ -77,7 +92,7 @@
 .admin-section h2 {
   margin: 0 0 0.75rem;
   font-size: 1.15rem;
-  color: var(--ata-navy);
+  color: var(--ata-heading);
 }
 
 .admin-actions {
@@ -90,7 +105,7 @@
 .admin-actions button {
   padding: 0.6rem 1.05rem;
   border: none;
-  border-radius: 999px;
+  border-radius: var(--ata-radius-pill);
   background: var(--ata-orange);
   color: #fff;
   font-weight: 800;
@@ -99,7 +114,8 @@
 }
 
 .admin-actions button.secondary {
-  background: var(--ata-navy-mid);
+  background: var(--ata-btn-secondary-bg);
+  color: var(--ata-btn-secondary-text);
   box-shadow: none;
 }
 
@@ -113,7 +129,7 @@
   overflow-x: auto;
   border: 1px solid var(--ata-border);
   border-radius: var(--ata-radius-md);
-  background: #fff;
+  background: var(--ata-surface);
   box-shadow: var(--ata-shadow-sm);
 }
 
@@ -128,7 +144,7 @@
   padding: 0.75rem 0.9rem 0;
   text-align: left;
   font-weight: 700;
-  color: var(--ata-navy-mid);
+  color: var(--ata-heading);
 }
 
 .admin-table th,
@@ -140,7 +156,7 @@
 }
 
 .admin-table th {
-  background: #faf6f3;
+  background: var(--ata-surface-muted);
   color: var(--ata-text-muted);
   font-size: 0.78rem;
   text-transform: uppercase;
@@ -152,7 +168,7 @@
 }
 
 .admin-table a {
-  color: var(--ata-orange-strong);
+  color: var(--ata-orange);
   word-break: break-all;
   font-weight: 700;
 }
@@ -191,7 +207,7 @@
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--ata-border);
   border-radius: var(--ata-radius-md);
-  background: #fff;
+  background: var(--ata-surface);
 }
 
 .admin-list__meta {
@@ -205,14 +221,14 @@
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.55rem;
-  border-radius: 999px;
+  border-radius: var(--ata-radius-pill);
   font-size: 0.78rem;
   font-weight: 800;
 }
 
 .admin-pill--good {
   background: var(--ata-success-soft);
-  color: #047857;
+  color: var(--ata-success);
 }
 
 .admin-pill--bad {

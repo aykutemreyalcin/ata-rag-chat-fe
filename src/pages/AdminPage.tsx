@@ -38,7 +38,7 @@ export function AdminPage() {
     : undefined
 
   return (
-    <section className="panel" aria-labelledby="admin-heading">
+    <section className="panel admin-panel" aria-labelledby="admin-heading">
       <h1 id="admin-heading">Admin dashboard</h1>
       <p className="admin-panel__lead">
         Crawl status, failed pages, pricing ingest, answer feedback, and

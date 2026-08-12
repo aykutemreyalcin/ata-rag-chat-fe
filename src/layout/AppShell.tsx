@@ -1,6 +1,9 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { BackendStatus } from '../components/BackendStatus'
+import { ThemeToggle } from '../components/ThemeToggle'
 import './AppShell.css'
+
+const ATA_HOME = 'https://akademiata.pl/'
 
 export function AppShell() {
   return (
@@ -19,9 +22,12 @@ export function AppShell() {
             />
           </span>
           <div>
-            <p className="shell__title">AkademiaTA Assistant</p>
+            <p className="shell__title">Akademia Techniczno-Artystyczna</p>
             <p className="shell__subtitle">
-              Grounded answers from akademiata.pl
+              RAG assistant · answers from{' '}
+              <a href={ATA_HOME} target="_blank" rel="noopener noreferrer">
+                akademiata.pl
+              </a>
             </p>
           </div>
         </div>
@@ -40,11 +46,21 @@ export function AppShell() {
             Admin
           </NavLink>
         </nav>
-        <BackendStatus />
+        <div className="shell__actions">
+          <ThemeToggle compact />
+          <BackendStatus />
+        </div>
       </header>
       <main id="main-content" className="shell__main" tabIndex={-1}>
         <Outlet />
       </main>
+      <footer className="shell__footer">
+        Powered by content from{' '}
+        <a href={ATA_HOME} target="_blank" rel="noopener noreferrer">
+          Akademia Techniczno-Artystyczna
+        </a>
+        . Studia w Warszawie, Wrocławiu i online.
+      </footer>
     </div>
   )
 }
